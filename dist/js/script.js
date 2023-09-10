@@ -34,3 +34,30 @@ window.addEventListener("click", function (e) {
     navMenu.classList.add("hidden");
   }
 });
+
+//untuk tombol dark mode
+
+const tombolgelap = document.querySelector("#tombol-gelap");
+const html = document.querySelector("html");
+
+tombolgelap.addEventListener("click", function () {
+  if (tombolgelap.checked) {
+    html.classList.add("dark");
+    localStorage.theme = "dark";
+  } else {
+    html.classList.remove("dark");
+    localStorage.theme = "light";
+  }
+});
+
+// pindah posisi toggle sesua mode
+
+if (
+  localStorage.theme === "dark" ||
+  (!("theme" in localStorage) &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches)
+) {
+  tombolgelap.checked = true;
+} else {
+  tombolgelap.checked = false;
+}
